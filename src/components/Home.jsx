@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Home = props => (
+const Home = () => (
   <div>
     <h1>Home</h1>
-    <p>Welcome {props.user.firstName} {props.user.lastName}</p>
+    <p>Welcome
+    </p>
   </div>
 );
 
