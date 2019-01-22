@@ -79,7 +79,7 @@ class SignUp extends React.Component {
           <label htmlFor="email">
             Password:
             <input
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleInputChange}
