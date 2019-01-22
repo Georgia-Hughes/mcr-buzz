@@ -40,7 +40,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="signup-container">
         <img className="logo" src={mcrlogo} />
         <h1>Login</h1>
         <div>

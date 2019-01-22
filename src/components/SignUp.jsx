@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import mcrlogo from '../images/MCR-Buzz.png';
+import { Link } from 'react-router-dom';
 import '../styles/sign-up.scss';
 import '../styles/app.scss';
 
@@ -38,7 +39,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="signup-container">
         <img className="logo" src={mcrlogo} />
         <h1>Sign Up</h1>
         <div>
@@ -86,7 +87,7 @@ class SignUp extends React.Component {
           </label>
         </div>
         <div>
-          <button onClick={this.handleLogin}>Sign Up</button>
+          <button onClick={this.handleLogin}>Sign Up</button> or <Link to="/login">Login</Link>
         </div>
       </div>
     );
