@@ -1,9 +1,9 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import SignUp from './SignUp';
+import TopNav from './TopNav';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,17 +19,28 @@ class App extends React.Component {
     this.setState({ user });
   }
 
+  handleLogout = () => {
+    this.setState({ user: null });
+  };
+
+  isLoggedIn() {
+    return Boolean(this.state.user);
+  }
+
   render() {
     return (
       <React.Fragment>
+        <TopNav
+          isLoggedIn={this.isLoggedIn()}
+          user={this.state.user}
+          onLogout={this.handleLogout}
+        />
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={props => (this.state.user ?
-            <Home {...props} user={this.state.user} /> :
-            <Redirect to="/login" />
-          )}
+      <Route
+            exact
+            path="/"
+            component={Home}
+            user={this.state.user}
         />
         <Route
           exact
@@ -38,7 +49,11 @@ class App extends React.Component {
             <Login {...props} onLogin={this.handleLogin} />
           )}
         />
-        <Route exact path="/sign-up" component={SignUp} />
+        <Route
+          exact
+          path="/sign-up"
+          component={SignUp}
+        />
       </Switch>
       </React.Fragment>
     );
