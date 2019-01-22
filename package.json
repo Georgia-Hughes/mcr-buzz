@@ -23,6 +23,8 @@
     "axios": "^0.18.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "cors": "^2.8.5",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "prop-types": "^15.6.1",
     "raf": "^3.4.0",
     "react": "^16.7.0",
