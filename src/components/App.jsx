@@ -4,27 +4,27 @@ import Home from './Home';
 import Login from './Login';
 import SignUp from './SignUp';
 import TopNav from './TopNav';
+import TokenManager from '../utils/token-manager';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      user: TokenManager.isTokenValid() ? TokenManager.getTokenPayload() : null,
     };
-
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(user) {
-    this.setState({ user });
-  }
+  handleLogin = () => {
+    this.setState({ user: TokenManager.getTokenPayload() });
+  };
 
   handleLogout = () => {
+    TokenManager.removeToken();
     this.setState({ user: null });
   };
 
   isLoggedIn() {
-    return Boolean(this.state.user);
+    return Boolean(this.state.user) && TokenManager.isTokenValid();
   }
 
   render() {
