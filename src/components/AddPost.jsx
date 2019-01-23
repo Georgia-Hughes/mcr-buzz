@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/addpost.scss';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import tokenManager from '../utils/token-manager';
+import TokenManager from '../utils/token-manager';
 import Alert from './Alert';
 
 class AddPost extends React.Component {
@@ -66,7 +66,7 @@ class AddPost extends React.Component {
         formData,
         {
           headers: {
-            Authorization: tokenManager.getToken(),
+            Authorization: TokenManager.getToken(),
             'Content-Type': 'multipart/form-data',
           },
         }
@@ -111,7 +111,7 @@ class AddPost extends React.Component {
             }
             <form onSubmit={this.handleAddPost}>
                 <div>
-                    <select name="cars">
+                    <select name="categories">
                         <option value="food">Food</option>
                         <option value="music">Music</option>
                         <option value="tech">Tech</option>
