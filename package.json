@@ -1,7 +1,7 @@
 {
-  "name": "react-bootstrap",
+  "name": "mcr-buzz-from-react-bootstrap",
   "version": "1.0.0",
-  "description": "mcr buzz application",
+  "description": "mcr-buzz-blog",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server"
