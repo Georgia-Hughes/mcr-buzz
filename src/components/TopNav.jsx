@@ -5,7 +5,7 @@ import mcrlogo from '../images/MCR-Buzz.png';
 
 const TopNav = ({ user, isLoggedIn, onLogout }) => (
   <div className="topNav">
-    <Link to='/' className="logo">
+    <Link to='/home' className="logo">
     <img className="logo" src={mcrlogo} />
     </Link>
     {
@@ -15,11 +15,6 @@ const TopNav = ({ user, isLoggedIn, onLogout }) => (
         <button className="logout-button" onClick={onLogout}>Logout</button>
       </div>
       )}
-    {
-        !isLoggedIn && (
-          <Link to="/login" className="login-button">Login</Link>
-        )
-      }
   </div>
 
 );

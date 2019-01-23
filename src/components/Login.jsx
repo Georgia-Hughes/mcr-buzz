@@ -32,7 +32,7 @@ class Login extends React.Component {
       .then((response) => {
         TokenManager.setToken(response.data.token);
         this.props.onLogin(response.data);
-        this.props.history.push('/');
+        this.props.history.push('/home');
       })
       .catch((error) => {
         console.log(error);
