@@ -1,0 +1,22 @@
+.Feed {
+  width: auto;
+  margin: 12px 8%;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+  background-color: white;
+}
+
+.category {
+  color: #545454
+}
+
+.title {
+  color: #545454
+}
+
+#info {
+  color: #ff914c;
+  font-size: small;
+  font-style: italic;
+}
