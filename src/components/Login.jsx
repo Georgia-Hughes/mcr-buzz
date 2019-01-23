@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import TokenManager from '../utils/token-manager';
 import '../styles/sign-up.scss';
 import '../styles/app.scss';
 
@@ -29,11 +30,12 @@ class Login extends React.Component {
       password: this.state.password,
     })
       .then((response) => {
+        TokenManager.setToken(response.data.token);
         this.props.onLogin(response.data);
-        this.props.history.push('/');
+        this.props.history.push('/home');
       })
       .catch((error) => {
-        this.setState({ errorMessage: error.response.data.message });
+        console.log(error);
       });
   }
 

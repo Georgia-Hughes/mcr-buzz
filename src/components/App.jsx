@@ -1,30 +1,33 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from  'react-router-dom';
 import Home from './Home';
 import Login from './Login';
 import SignUp from './SignUp';
 import TopNav from './TopNav';
+import TokenManager from '../utils/token-manager';
+import BottomNav from '../components/BottomNav';
+import AddPost from '../components/AddPost';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      user: TokenManager.isTokenValid() ? TokenManager.getTokenPayload() : null,
     };
-
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(user) {
-    this.setState({ user });
-  }
+  handleLogin = () => {
+    this.setState({ user: TokenManager.getTokenPayload() });
+  };
 
   handleLogout = () => {
+    TokenManager.removeToken();
     this.setState({ user: null });
+    this.props.history.push('/login');
   };
 
   isLoggedIn() {
-    return Boolean(this.state.user);
+    return Boolean(this.state.user) && TokenManager.isTokenValid();
   }
 
   render() {
@@ -38,7 +41,7 @@ class App extends React.Component {
       <Switch>
       <Route
             exact
-            path="/"
+            path="/home"
             component={Home}
             user={this.state.user}
         />
@@ -54,10 +57,20 @@ class App extends React.Component {
           path="/sign-up"
           component={SignUp}
         />
+        <Route
+          exact
+          path="/add-post"
+          render={props => (
+            <AddPost {...props} isLoggedIn={this.isLoggedIn()} />
+          )}
+        />
       </Switch>
+      <BottomNav
+          isLoggedIn={this.isLoggedIn()}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

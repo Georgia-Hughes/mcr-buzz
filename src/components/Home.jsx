@@ -2,7 +2,6 @@ import React from 'react';
 import Feed from './Feed';
 import FeedTest from './FeedTest';
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
