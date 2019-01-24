@@ -57,11 +57,11 @@ class AddPost extends React.Component {
 
       const formData = new FormData();
       formData.append('image', this.state.file);
-      formData.append('category', this.state.fields.category);
-      formData.append('title', this.state.fields.title);
-      formData.append('description', this.state.fields.description);
 
       axios.post(
+          category: { type: String },
+          title: { type: String },
+          description: { type: String },
         'http://127.0.0.1:3000/posts',
         formData,
         {
