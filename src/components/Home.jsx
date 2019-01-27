@@ -30,9 +30,9 @@ class Home extends React.Component {
 
         <Feed
          category={this.state.category}
-         post={this.state.post}
          title={this.state.title}
          date={this.state.date}
+         post={this.state.post}
          description={this.state.description}
          user={this.state.user}
         />

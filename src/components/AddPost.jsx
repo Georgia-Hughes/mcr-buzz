@@ -10,8 +10,9 @@ class AddPost extends React.Component {
     super(props);
 
     this.state = {
+      category: '',
       fields: [{
-        category: '',
+        // category: '',
         title: '',
         description: '',
         src: '',
@@ -41,6 +42,14 @@ class AddPost extends React.Component {
     });
   };
 
+  categoryChange = (event) => {
+    console.log(event.target.value);
+
+    this.setState({
+      category: event.target.value,
+    });
+  };
+
   handleAddPost = (event) => {
     event.preventDefault();
 
@@ -56,6 +65,8 @@ class AddPost extends React.Component {
       });
 
       const formData = new FormData();
+      console.log(this.state);
+      
       formData.append('image', this.state.file);
       formData.append('category', this.state.fields.category);
       formData.append('title', this.state.fields.title);
@@ -111,7 +122,7 @@ class AddPost extends React.Component {
             }
             <form onSubmit={this.handleAddPost}>
                 <div>
-                    <select name="categories">
+                    <select name="categories" value={this.state.category} onChange={this.categoryChange} >
                         <option value="food">Food</option>
                         <option value="music">Music</option>
                         <option value="tech">Tech</option>
@@ -124,7 +135,7 @@ class AddPost extends React.Component {
                         name="title"
                         placeholder="Title"
                         value={this.state.fields.title}
-                        onChange={this.handleTextChange}
+                        onChange={this.textChange}
                     />
                 </div>
                 <div>
