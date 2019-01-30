@@ -51,8 +51,6 @@ class AddPost extends React.Component {
   };
 
   handleAddPost = (event) => {
-    console.log(this.state.fields);
-    console.log(this.state.file);
     event.preventDefault();
 
     this.setState({

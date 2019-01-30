@@ -3,6 +3,7 @@ import Feed from './Feed';
 import axios from 'axios';
 import TokenManager from '../utils/token-manager';
 import '../styles/home.scss';
+import moment from 'moment';
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class Home extends React.Component {
         {this.state.posts.map((post) => {
           return (
             <Feed
-            key={post._id}
             category={post.category}
-            title={post.title}
-            date={post.date}
+            datePosted={post.datePosted}
             description={post.description}
-            user={this.state.user}
             image={post.image}
+            title={post.title}
+            user={this.state.user}
+            key={post._id}
            />
           );
         })}
