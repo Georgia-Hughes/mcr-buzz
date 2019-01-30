@@ -5,21 +5,21 @@ import axios from 'axios';
 import TokenManager from '../utils/token-manager';
 import Alert from './Alert';
 
+const initialFields = {
+  description: '',
+  title: '',
+  category: '',
+};
+
 class AddPost extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      fields: [{
-        category: '',
-        title: '',
-        description: '',
-        src: '',
-        alertMessage: '',
-        isSuccess: false,
-        isError: false,
-      },
-      ],
+      fields: initialFields,
+      alertMessage: '',
+      isSuccess: false,
+      isError: false,
       error: '',
       file: null,
     };
@@ -41,6 +41,15 @@ class AddPost extends React.Component {
     });
   };
 
+  categoryChange = (event) => {
+    this.setState({
+      fields: {
+        ...this.state.fields.category,
+        category: event.target.value,
+      },
+    });
+  };
+
   handleAddPost = (event) => {
     event.preventDefault();
 
@@ -56,13 +65,15 @@ class AddPost extends React.Component {
       });
 
       const formData = new FormData();
+      
       formData.append('image', this.state.file);
-      formData.append('category', this.state.fields.category);
-      formData.append('title', this.state.fields.title);
       formData.append('description', this.state.fields.description);
+      formData.append('title', this.state.fields.title);
+      formData.append('category', this.state.fields.category);
 
       axios.post(
-        'http://127.0.0.1:3000/posts',
+        'http://localhost:3000/posts',
+        this.state.fields,
         formData,
         {
           headers: {
@@ -74,6 +85,8 @@ class AddPost extends React.Component {
         .then(() => this.setState({
           isSuccess: true,
           alertMessage: 'Post added.',
+          fields: initialFields,
+          file: '',
         }))
         .catch(() => {
           this.setState({
@@ -111,7 +124,8 @@ class AddPost extends React.Component {
             }
             <form onSubmit={this.handleAddPost}>
                 <div>
-                    <select name="categories">
+                    <select name="categories" value={this.state.fields.category} onChange={this.categoryChange} >
+                        <option>Select a Category</option>
                         <option value="food">Food</option>
                         <option value="music">Music</option>
                         <option value="tech">Tech</option>
@@ -124,7 +138,7 @@ class AddPost extends React.Component {
                         name="title"
                         placeholder="Title"
                         value={this.state.fields.title}
-                        onChange={this.handleTextChange}
+                        onChange={this.textChange}
                     />
                 </div>
                 <div>
@@ -154,3 +168,4 @@ class AddPost extends React.Component {
 }
 
 export default AddPost;
+

@@ -29,7 +29,8 @@
     "raf": "^3.4.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "react-timestamp": "^4.4.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.5",

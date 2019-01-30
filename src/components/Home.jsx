@@ -1,50 +1,44 @@
 import React from 'react';
 import Feed from './Feed';
-import FeedTest from './FeedTest';
+import axios from 'axios';
+import TokenManager from '../utils/token-manager';
+import '../styles/home.scss';
+import moment from 'moment';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: 'event',
-      post: 'this is a post',
-      title: 'Beer Festival',
-      date: '22nd Jan 2019',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-      user: 'Terry Testerson',
+      posts: [],
+      user: TokenManager.isTokenValid() ? TokenManager.getTokenPayload() : null,
     };
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
   componentDidMount() {
-    console.log('componentDidMount');
-    // axios get request to go here
+    axios.get('http://localhost:3000/posts')
+      .then((response) => {
+        this.setState({
+          posts: response.data,
+        });
+      });
   }
 
   render() {
     return (
       <React.Fragment>
-
-        <Feed
-         category={this.state.category}
-         post={this.state.post}
-         title={this.state.title}
-         date={this.state.date}
-         description={this.state.description}
-         user={this.state.user}
-        />
-        <Feed
-         category={this.state.category}
-         post={this.state.post}
-         title={this.state.title}
-         date={this.state.date}
-         description={this.state.description}
-         user={this.state.user}
-        />
-        <FeedTest />
+        {this.state.posts.map((post) => {
+          return (
+            <Feed
+            category={post.category}
+            datePosted={post.datePosted}
+            description={post.description}
+            image={post.image}
+            title={post.title}
+            user={this.state.user}
+            key={post._id}
+           />
+          );
+        })}
 
       </React.Fragment>
     );
