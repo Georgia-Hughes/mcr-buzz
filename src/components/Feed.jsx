@@ -1,6 +1,10 @@
 import React from 'react';
 import '../styles/feed.scss';
 import moment from 'moment';
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+
+const shareUrl = 'https://trello.com/b/jSqMO2qF/mcr-blog';
+const title = 'MCR Buzz';
 
 const Feed = (props) => {
   return (
@@ -19,7 +23,23 @@ const Feed = (props) => {
         )
       }
       <p>{props.description}</p>
-      <p id="info">by {props.user.firstName} {props.user.lastName}</p>
+      {/* <p id="info">by {props.userName}</p> */}
+      <FacebookShareButton
+            url={shareUrl}
+            quote={title}
+            className="Demo__facebook__share-button">
+            <FacebookIcon
+              size={32}
+              round />
+        </FacebookShareButton>
+        <WhatsappShareButton
+            url={shareUrl}
+            quote={title}
+            className="Demo__whatsapp__share-button">
+            <WhatsappIcon
+              size={32}
+              round />
+        </WhatsappShareButton>
     </div>
   );
 };

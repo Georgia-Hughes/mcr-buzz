@@ -27,6 +27,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         {this.state.posts.map((post) => {
+          console.log(post);
           return (
             <Feed
             category={post.category}
@@ -35,6 +36,7 @@ class Home extends React.Component {
             image={post.image}
             title={post.title}
             user={this.state.user}
+            userName={post.userName}
             key={post._id}
            />
           );
