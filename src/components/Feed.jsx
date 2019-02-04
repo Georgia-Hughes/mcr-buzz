@@ -1,4 +1,5 @@
 import React from 'react';
+import LikeButton from './LikeButton';
 import '../styles/feed.scss';
 
 const Feed = (props) => {
@@ -10,7 +11,7 @@ const Feed = (props) => {
       <img src={props.image} alt="where's the image" width="100%" />
       <p>{props.description}</p>
       <p id="info">by {props.user.firstName} {props.user.lastName}</p>
-
+      <LikeButton />
     </div>
   );
 };

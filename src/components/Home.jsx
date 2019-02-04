@@ -10,7 +10,9 @@ class Home extends React.Component {
     this.state = {
       posts: [],
       user: TokenManager.isTokenValid() ? TokenManager.getTokenPayload() : null,
+      category: '',
     };
+    this.handleOnSelect = this.handleOnSelect.bind(this);
   }
 
   componentDidMount() {
@@ -22,20 +24,41 @@ class Home extends React.Component {
       });
   }
 
+  handleOnSelect(event) {
+    this.setState({ category: event.target.value });
+  }
+
   render() {
     return (
       <React.Fragment>
-        {this.state.posts.map((post) => {
+        <label htmlFor="filter">Filter by Category: </label>
+          <select onChange={this.handleOnSelect} name="categories" >
+                        <option>Select a Category</option>
+                        <option value="food">Food</option>
+                        <option value="design">Design</option>
+                        <option value="photography">Photography</option>
+                        <option value="tech">Tech.</option>
+                        <option value="Events/Entertainment">Events/Entertainment</option>
+                        <option value="family">Family</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="history">History</option>
+                        <option value="manchester">Manchester</option>
+                    </select>
+        {this.state.posts.filter((post) => {
+          return post.category === this.state.category;
+        }).map((post) => {
           return (
             <Feed
-            key={post._id}
             category={post.category}
-            title={post.title}
             date={post.date}
             description={post.description}
-            user={this.state.user}
             image={post.image}
-           />
+            title={post.title}
+            user={this.state.user}
+            key={post._id}
+            liked={this.state.likes}
+            count={this.handleLikeClicks}
+            />
           );
         })}
 
