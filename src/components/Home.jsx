@@ -66,13 +66,6 @@ class Home extends React.Component {
             count={this.handleLikeClicks}
             id={post._id}
             likes={post.likes}
-            />
-            datePosted={post.datePosted}
-            description={post.description}
-            image={post.image}
-            title={post.title}
-            user={post.user}
-            key={post._id}
            />
           );
         })}
