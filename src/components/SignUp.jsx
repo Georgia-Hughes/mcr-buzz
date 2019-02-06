@@ -12,6 +12,7 @@ class SignUp extends React.Component {
       lastName: '',
       email: '',
       password: '',
+      userName: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,6 +31,7 @@ class SignUp extends React.Component {
       lastName: this.state.lastName,
       email: this.state.email,
       password: this.state.password,
+      userName: this.state.userName,
     })
       .then(() => {
         this.props.history.push('/login');
@@ -40,6 +42,17 @@ class SignUp extends React.Component {
     return (
       <div className="signup-container">
         <h1>Sign Up</h1>
+        <div>
+          <label htmlFor="userName">
+            User Name:
+            <input
+              type="text"
+              name="userName"
+              value={this.state.userName}
+              onChange={this.handleInputChange}
+            />
+          </label>
+        </div>
         <div>
           <label htmlFor="firstName">
             First Name:

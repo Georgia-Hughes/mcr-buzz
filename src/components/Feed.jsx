@@ -23,7 +23,7 @@ const Feed = (props) => {
         )
       }
       <p>{props.description}</p>
-      {/* <p id="info">by {props.userName}</p> */}
+      <p id="info">by {props.user}</p>
       <FacebookShareButton
             url={shareUrl}
             quote={title}
