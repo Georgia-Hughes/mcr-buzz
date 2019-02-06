@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/feed.scss';
 import moment from 'moment';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+import Linkify from 'react-linkify';
 
 const shareUrl = 'https://trello.com/b/jSqMO2qF/mcr-blog';
 const title = 'MCR Buzz';
@@ -22,7 +23,7 @@ const Feed = (props) => {
           null
         )
       }
-      <p>{props.description}</p>
+      <p><Linkify>{props.description}</Linkify></p>
       <p id="info">by {props.user}</p>
       <FacebookShareButton
             url={shareUrl}

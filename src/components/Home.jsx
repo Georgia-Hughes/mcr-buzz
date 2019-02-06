@@ -17,7 +17,6 @@ class Home extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:3000/posts')
       .then((response) => {
-        console.log(response);
         this.setState({
           posts: response.data,
         });
@@ -28,8 +27,6 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         {this.state.posts.map((post) => {
-          console.log(post);
-          console.log(post.user);
           return (
             <Feed
             category={post.category}
