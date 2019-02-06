@@ -20,3 +20,16 @@
   font-size: small;
   font-style: italic;
 }
+
+.SocialMediaShareButton.SocialMediaShareButton--facebook.Demo__facebook__share-button, .SocialMediaShareButton.SocialMediaShareButton--whatsapp.Demo__whatsapp__share-button{
+  display: inline-block;
+}
+
+.SocialMediaShareButton.SocialMediaShareButton--facebook.Demo__facebook__share-button:focus, .SocialMediaShareButton.SocialMediaShareButton--whatsapp.Demo__whatsapp__share-button:focus{
+  outline: none
+}
+
+
+.SocialMediaShareButton.SocialMediaShareButton--facebook.Demo__facebook__share-button{
+  margin-right: .4em;
+}

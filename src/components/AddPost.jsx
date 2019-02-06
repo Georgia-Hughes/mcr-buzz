@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import TokenManager from '../utils/token-manager';
 import Alert from './Alert';
+import jwtDecode from 'jwt-decode';
 
 const initialFields = {
   description: '',
   title: '',
   category: '',
+  user: '',
 };
 
 class AddPost extends React.Component {
@@ -70,10 +72,12 @@ class AddPost extends React.Component {
       formData.append('description', this.state.fields.description);
       formData.append('title', this.state.fields.title);
       formData.append('category', this.state.fields.category);
+      const user = jwtDecode(window.localStorage.apiToken);
+      const fields = Object.assign({}, this.state.fields, { user: user.userName });
 
       axios.post(
         'http://localhost:3000/posts',
-        this.state.fields,
+        fields,
         formData,
         {
           headers: {
