@@ -26,7 +26,7 @@ const Feed = (props) => {
         )
         }
         <p id="info">posted { moment(props.datePosted).format('MMMM Do YYYY, h:mm a') }</p>
-      <p><Linkify>{props.description}</Linkify></p>
+      <p className="description"><Linkify>{props.description}</Linkify></p>
       <p id="info">by {props.user}</p>
       <FacebookShareButton
             url={shareUrl}
