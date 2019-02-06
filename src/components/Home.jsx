@@ -34,6 +34,7 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <div class="center-element">
         <label className="filter" htmlFor="filter">Filter by Category: </label>
           <select className="dropdown" onChange={this.handleOnSelect} name="categories" >
                         <option value="">Select a Category</option>
@@ -47,6 +48,7 @@ class Home extends React.Component {
                         <option value="history">History</option>
                         <option value="manchester">Manchester</option>
                     </select>
+        </div>
         {this.state.posts.filter((post) => {
           if (this.state.category === '') {
             return true;

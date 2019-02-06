@@ -13,8 +13,8 @@ const title = 'MCR Buzz';
 const Feed = (props) => {
   return (
     <div className="Feed" >
-      <h2 className="category">{props.category}</h2>
-      <h3 className="title">{props.title}</h3>
+      <h3 className="category">{props.category}</h3>
+      <h2 className="title">{props.title}</h2>
       {
         props.image && (
           <img src={props.image} alt="where's the image" width="100%" />
