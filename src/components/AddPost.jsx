@@ -76,7 +76,7 @@ class AddPost extends React.Component {
       const fields = Object.assign({}, this.state.fields, { user: user.userName });
 
       axios.post(
-        'http://localhost:3000/posts',
+        `${process.env.API_URL}/posts`,
         fields,
         formData,
         {

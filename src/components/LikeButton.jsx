@@ -16,7 +16,7 @@ class Like extends React.Component {
   }
 
   handleClick = () => {
-    axios.patch(`http://localhost:3000/posts/${this.props.id}/likes`)
+    axios.patch(`${process.env.API_URL}/posts/${this.props.id}/likes`)
       .then(() => {
         this.setState(({ count }) => ({
           isSuccess: true,

@@ -25,7 +25,7 @@ class Login extends React.Component {
   }
 
   handleLogin() {
-    axios.post('http://127.0.0.1:3000/auth/login', {
+    axios.post(`${process.env.API_URL}/auth/login`, {
       email: this.state.email,
       password: this.state.password,
     })
