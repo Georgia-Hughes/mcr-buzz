@@ -25,15 +25,17 @@ class Home extends React.Component {
   }
 
   handleOnSelect(event) {
+    console.log(event.target.value);
+    
     this.setState({ category: event.target.value });
   }
 
   render() {
     return (
       <React.Fragment>
-        <label htmlFor="filter">Filter by Category: </label>
-          <select onChange={this.handleOnSelect} name="categories" >
-                        <option>Select a Category</option>
+        <label className="filter" htmlFor="filter">Filter by Category: </label>
+          <select className="dropdown" onChange={this.handleOnSelect} name="categories" >
+                        <option value="">Select a Category</option>
                         <option value="food">Food</option>
                         <option value="design">Design</option>
                         <option value="photography">Photography</option>
@@ -45,6 +47,9 @@ class Home extends React.Component {
                         <option value="manchester">Manchester</option>
                     </select>
         {this.state.posts.filter((post) => {
+          if (this.state.category === '') {
+            return true;
+          }
           return post.category === this.state.category;
         }).map((post) => {
           return (
@@ -58,10 +63,11 @@ class Home extends React.Component {
             key={post._id}
             liked={this.state.likes}
             count={this.handleLikeClicks}
+            id={post._id}
+            likes={post.likes}
             />
           );
         })}
-
       </React.Fragment>
     );
   }

@@ -6,14 +6,17 @@ import '../styles/likebutton.scss';
 
 
 class Like extends React.Component {
-  state = {
-    count: 0,
-    isSuccess: false,
-    isError: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: props.liked,
+      isSuccess: false,
+      isError: false,
+    };
+  }
 
   handleClick = () => {
-    axios.post('http://localhost:3000/posts/:id/likes')
+    axios.patch(`http://localhost:3000/posts/${this.props.id}/likes`)
       .then(() => {
         this.setState(({ count }) => ({
           isSuccess: true,
