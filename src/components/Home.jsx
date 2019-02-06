@@ -3,6 +3,7 @@ import Feed from './Feed';
 import axios from 'axios';
 import TokenManager from '../utils/token-manager';
 import '../styles/home.scss';
+import moment from 'moment';
 
 class Home extends React.Component {
   constructor(props) {
@@ -55,17 +56,24 @@ class Home extends React.Component {
           return (
             <Feed
             category={post.category}
-            date={post.date}
+            datePosted={post.datePosted}
             description={post.description}
             image={post.image}
             title={post.title}
-            user={this.state.user}
+            user={post.user}
             key={post._id}
             liked={this.state.likes}
             count={this.handleLikeClicks}
             id={post._id}
             likes={post.likes}
             />
+            datePosted={post.datePosted}
+            description={post.description}
+            image={post.image}
+            title={post.title}
+            user={post.user}
+            key={post._id}
+           />
           );
         })}
       </React.Fragment>
