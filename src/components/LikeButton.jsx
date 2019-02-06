@@ -36,8 +36,7 @@ class Like extends React.Component {
     return (
       <div className="fas fa-heart" id="heart" onClick={this.handleClick}>
         <button
-          className="button"
-          onClick={this.handleClick}>
+          className="button">
           {this.state.count}
           </button>
       </div>
