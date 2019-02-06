@@ -1,4 +1,5 @@
 import React from 'react';
+import LikeButton from './LikeButton';
 import '../styles/feed.scss';
 import moment from 'moment';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
@@ -12,6 +13,11 @@ const Feed = (props) => {
     <div className="Feed" >
       <h2 className="category">{props.category}</h2>
       <h3 className="title">{props.title}</h3>
+      <p id="info">posted {props.date}</p>
+      <img src={props.image} alt="where's the image" width="100%" />
+      <p>{props.description}</p>
+      <p id="info">by {props.user.firstName} {props.user.lastName}</p>
+      <LikeButton id={props.id} liked={props.likes}/>
       <p id="info">posted { moment(props.datePosted).format('MMMM Do YYYY, h:mm a') }</p>
       {
         props.image && (

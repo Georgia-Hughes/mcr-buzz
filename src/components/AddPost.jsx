@@ -131,9 +131,14 @@ class AddPost extends React.Component {
                     <select name="categories" value={this.state.fields.category} onChange={this.categoryChange} >
                         <option>Select a Category</option>
                         <option value="food">Food</option>
-                        <option value="music">Music</option>
-                        <option value="tech">Tech</option>
-                        <option value="misc">Misc.</option>
+                        <option value="design">Design</option>
+                        <option value="photography">Photography</option>
+                        <option value="tech">Tech.</option>
+                        <option value="Events/Entertainment">Events/Entertainment</option>
+                        <option value="family">Family</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="history">History</option>
+                        <option value="manchester">Manchester</option>
                     </select>
                 </div>
                 <div>

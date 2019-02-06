@@ -11,7 +11,9 @@ class Home extends React.Component {
     this.state = {
       posts: [],
       user: TokenManager.isTokenValid() ? TokenManager.getTokenPayload() : null,
+      category: '',
     };
+    this.handleOnSelect = this.handleOnSelect.bind(this);
   }
 
   componentDidMount() {
@@ -23,10 +25,34 @@ class Home extends React.Component {
       });
   }
 
+  handleOnSelect(event) {
+    console.log(event.target.value);
+    
+    this.setState({ category: event.target.value });
+  }
+
   render() {
     return (
       <React.Fragment>
-        {this.state.posts.map((post) => {
+        <label className="filter" htmlFor="filter">Filter by Category: </label>
+          <select className="dropdown" onChange={this.handleOnSelect} name="categories" >
+                        <option value="">Select a Category</option>
+                        <option value="food">Food</option>
+                        <option value="design">Design</option>
+                        <option value="photography">Photography</option>
+                        <option value="tech">Tech.</option>
+                        <option value="Events/Entertainment">Events/Entertainment</option>
+                        <option value="family">Family</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="history">History</option>
+                        <option value="manchester">Manchester</option>
+                    </select>
+        {this.state.posts.filter((post) => {
+          if (this.state.category === '') {
+            return true;
+          }
+          return post.category === this.state.category;
+        }).map((post) => {
           return (
             <Feed
             category={post.category}
@@ -36,10 +62,20 @@ class Home extends React.Component {
             title={post.title}
             user={post.user}
             key={post._id}
+            liked={this.state.likes}
+            count={this.handleLikeClicks}
+            id={post._id}
+            likes={post.likes}
+            />
+            datePosted={post.datePosted}
+            description={post.description}
+            image={post.image}
+            title={post.title}
+            user={post.user}
+            key={post._id}
            />
           );
         })}
-
       </React.Fragment>
     );
   }
