@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TokenManager from '../utils/token-manager';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 import '../styles/sign-up.scss';
 import '../styles/app.scss';
 
@@ -67,6 +68,9 @@ class Login extends React.Component {
         </div>
         <div>
           <button onClick={this.handleLogin}>Login</button> or <Link to="/sign-up">Sign Up</Link>
+          <KeyboardEventHandler
+            handleKeys={['enter']}
+            onKeyEvent={this.handleLogin}/>
         </div>
         {
           this.state.errorMessage &&

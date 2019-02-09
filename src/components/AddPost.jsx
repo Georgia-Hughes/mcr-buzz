@@ -5,6 +5,7 @@ import axios from 'axios';
 import TokenManager from '../utils/token-manager';
 import Alert from './Alert';
 import jwtDecode from 'jwt-decode';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 const initialFields = {
   description: '',
@@ -167,6 +168,9 @@ class AddPost extends React.Component {
                 />
                 <button className="add-button" type="submit">Post</button>
             </form>
+            <KeyboardEventHandler
+            handleKeys={['enter']}
+            onKeyEvent={this.handleAddPost}/>
         </div>
       );
     }
